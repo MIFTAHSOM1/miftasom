@@ -61,7 +61,7 @@ export const loadBlogPosts = async (languageFilter: 'en' | 'so' | 'all' = 'all')
       
       if (altEntries.length === 0) {
         console.log("No files found with any pattern, trying posts.json fallback...");
-        return await loadPostsFromJson(language);
+        return await loadPostsFromJson(languageFilter);
       }
       
       // Use alternative entries
