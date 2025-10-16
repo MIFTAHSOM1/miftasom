@@ -17,9 +17,8 @@ const ArticleGrid = () => {
         console.log("Loading blog posts...");
         setLoading(true);
         setError(null);
-        // Strictly load posts for current UI language to avoid cross-language mix
-        const lang = (language === 'so' ? 'so' : 'en') as 'en' | 'so';
-        const data = await loadBlogPosts(lang);
+        // Load all posts, then prefer current UI language for display to keep parity
+        const data = await loadBlogPosts('all');
         console.log("Loaded articles:", data.length, data);
         if (mounted) {
           setArticles(data);

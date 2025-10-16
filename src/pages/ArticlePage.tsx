@@ -18,9 +18,8 @@ const ArticlePage = () => {
   useEffect(() => {
     let mounted = true;
     (async () => {
-      // Load only posts for current UI language; ensures full-page translation
-      const lang = (language === 'so' ? 'so' : 'en') as 'en' | 'so';
-      const data = await loadBlogPosts(lang);
+      // Load all posts and choose the best language match for the viewed article
+      const data = await loadBlogPosts('all');
       if (mounted) setPosts(data);
     })();
     return () => {

@@ -57,9 +57,8 @@ const CategoryPage = () => {
   useEffect(() => {
     let mounted = true;
     (async () => {
-      // Load only posts for current UI language to prevent mixed-language results
-      const lang = (language === 'so' ? 'so' : 'en') as 'en' | 'so';
-      const data = await loadBlogPosts(lang);
+      // Load all posts and prefer current language to keep identical set across languages
+      const data = await loadBlogPosts('all');
       if (mounted) setAllPosts(data);
     })();
     return () => {
