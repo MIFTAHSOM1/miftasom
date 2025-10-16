@@ -17,8 +17,9 @@ const ArticleGrid = () => {
         console.log("Loading blog posts...");
         setLoading(true);
         setError(null);
-        // Load all posts so homepage list doesn't disappear when toggling language
-        const data = await loadBlogPosts('all');
+        // Strictly load posts for current UI language to avoid cross-language mix
+        const lang = (language === 'so' ? 'so' : 'en') as 'en' | 'so';
+        const data = await loadBlogPosts(lang);
         console.log("Loaded articles:", data.length, data);
         if (mounted) {
           setArticles(data);

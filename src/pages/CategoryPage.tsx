@@ -57,8 +57,9 @@ const CategoryPage = () => {
   useEffect(() => {
     let mounted = true;
     (async () => {
-      // Load all posts regardless of UI language; the UI language only affects labels
-      const data = await loadBlogPosts('all');
+      // Load only posts for current UI language to prevent mixed-language results
+      const lang = (language === 'so' ? 'so' : 'en') as 'en' | 'so';
+      const data = await loadBlogPosts(lang);
       if (mounted) setAllPosts(data);
     })();
     return () => {
